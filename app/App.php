@@ -4,14 +4,19 @@ namespace App;
 
 class App {
 
-    const DB_NAME = "blog";
-    const DB_USER = "root";
-    const DB_PASS = "";
-    const DB_HOST = "localhost";
+    //private static $database;
+    private static $_instance;
 
-    private static $database;
+    public $title = "Mon super site!";
 
-    private static $title = 'Mon super site!';
+    public static function getInstance(){
+        if(is_null(self::$_instance)){
+            self::$_instance = new App();
+        }
+        return self::$_instance;
+    }
+
+    /*private static $title = 'Mon super site!';
 
     public static function getDb(){
 
@@ -33,7 +38,7 @@ class App {
 
     public static function setTitle($title){
         /* titre de base + titre de la page */
-        self::$title = $title /*. ' | ' . self::$title*/;
-    }
+        /*self::$title = $title*/ /*. ' | ' . self::$title;*/
+    //}
 
 }
