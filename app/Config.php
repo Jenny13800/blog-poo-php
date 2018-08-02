@@ -25,7 +25,7 @@ class Config
         if(!isset($this->settings[$key])) {
             return null;
         }
-        return $this->settings($key);
+        return $this->settings[$key];
     }
 
 }
