@@ -5,10 +5,19 @@ require '../app/Autoloader.php';
 App\Autoloader::register();
 
 $app = \App\App::getInstance();
+
+$posts = $app->getTable('Posts');
+$posts = $app->getTable('Categories');
+
+//var_dump(\App\App::getTable('Posts'));
+//var_dump(\App\App::getTable('Users'));
+//var_dump(\App\App::getTable('Categories'));
+
+/*$app = \App\App::getInstance();
 $app->title = "Titre de test";
 
 $app2 = \App\App::getInstance();
-echo $app2->title;
+echo $app2->title; */
 
 //var_dump($config = \App\Config::getInstance()->get('db_user'));
 
