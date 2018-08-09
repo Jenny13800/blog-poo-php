@@ -13,7 +13,7 @@ class Table
     public function __construct(Database $db)
     {
         $this->db = $db;
-        // vérifie si pas de nom de table déclarée
+        // vérifie si pas de nom de table déclaré
         if(is_null($this->table)) {
             $parts = explode('\\', get_class($this));
             $class_name = end($parts);

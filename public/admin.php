@@ -14,9 +14,10 @@ if(isset($_GET['p'])){
     $page = 'home';
 }
 
-// Auth
+// Authentification
 $app = App::getInstance();
 $auth = new DBAuth($app->getDb());
+// si utilisateur pas connecté
 if(!$auth->logged()){
     $app->forbidden();
 }

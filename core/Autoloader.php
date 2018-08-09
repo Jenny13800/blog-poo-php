@@ -9,6 +9,7 @@ namespace Core;
 class Autoloader {
 
     static function register(){
+        // récupère nom du fichier et appelle fonction autoload
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
 

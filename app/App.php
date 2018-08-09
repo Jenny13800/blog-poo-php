@@ -11,12 +11,15 @@ class App {
     public $title = "Mon super site!";
 
     public static function getInstance(){
+        // vérifie si l'instance est null
         if(is_null(self::$_instance)){
+            // si elle est nulle => on la crée
             self::$_instance = new App();
         }
         return self::$_instance;
     }
 
+    //charge l'autoloader
     public static function load(){
         session_start();
         require ROOT . '/app/Autoloader.php';

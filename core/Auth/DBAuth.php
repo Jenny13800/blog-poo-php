@@ -32,6 +32,9 @@ class DBAuth {
     public function login($username, $password){
         $user = $this->db->prepare('SELECT * FROM users WHERE username = ?', [$username], null, true);
         if($user){
+            // sha1 à remplacer
+            // utiliser password_hash pour hacher le mdp
+            // password_verify() => verifie le hash
             if($user->password === sha1($password)){
                 $_SESSION['auth'] = $user->id;
                 return true;
@@ -42,6 +45,7 @@ class DBAuth {
         var_dump($user);*/
     }
 
+    // vérifie dans la session si l'utilisateur est connecté
     public function logged(){
         return isset($_SESSION['auth']);
     }

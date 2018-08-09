@@ -11,6 +11,13 @@ class MysqlDatabase extends Database {
     private $db_host;
     private $pdo;
 
+    /**
+     * MysqlDatabase constructor.
+     * @param $db_name
+     * @param string $db_user
+     * @param string $db_pass
+     * @param string $db_host
+     */
     public function __construct($db_name, $db_user = 'root', $db_pass = '', $db_host="localhost"){
 
         $this->db_name = $db_name;
@@ -20,10 +27,13 @@ class MysqlDatabase extends Database {
 
     }
 
+    /**
+     * @return PDO
+     */
     private function getPDO() {
         if($this->pdo === null) {
 
-            $pdo = new PDO('mysql:dbname=blog;host=localhost', 'root', '');
+            $pdo = new PDO('mysql:dbname=blog-ex;host=localhost', 'root', '');
 
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -34,6 +44,12 @@ class MysqlDatabase extends Database {
         return $this->pdo;
     }
 
+    /**
+     * @param $statement
+     * @param null $class_name
+     * @param bool $one
+     * @return array
+     */
     public function query($statement, $class_name = null, $one = false) {
 
         $req = $this->getPDO()->query($statement);
@@ -62,6 +78,13 @@ class MysqlDatabase extends Database {
         return $datas;
     }
 
+    /**
+     * @param $statement
+     * @param $attributes
+     * @param null $class_name
+     * @param bool $one
+     * @return array
+     */
     public function prepare($statement, $attributes, $class_name = null, $one = false){
         $req = $this->getPDO()->prepare($statement);
         $res = $req->execute($attributes);
@@ -87,6 +110,9 @@ class MysqlDatabase extends Database {
         return $datas;
     }
 
+    /**
+     * @return string
+     */
     public function lastInsertId(){
         return $this->getPDO()->lastInsertId();
     }
